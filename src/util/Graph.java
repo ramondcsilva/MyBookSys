@@ -33,7 +33,7 @@ public class Graph<T> implements IGraph, Serializable {
     // Vertices
     public void addVertice(T object) throws DuplicateKeyException {
         if (adjacencias.containsKey(object)) {
-            throw new DuplicateKeyException();
+            throw new DuplicateKeyException("Duplicação de vertice não permitida.");
         }
         adjacencias.put(object, new HashMap<>());
     }
@@ -79,7 +79,7 @@ public class Graph<T> implements IGraph, Serializable {
                 return aresta;
             }
         }
-        throw new ArestaNotFoundException();
+        throw new ArestaNotFoundException("Aresta não existe.");
     }
 
     @SuppressWarnings("rawtypes")
@@ -100,7 +100,7 @@ public class Graph<T> implements IGraph, Serializable {
             adjacencias.get(aresta.getOrigem()).remove(aresta.getDestino(), aresta);
             adjacencias.get(aresta.getDestino()).remove(aresta.getOrigem(), aresta);
         }
-        throw new ArestaNotFoundException();
+        throw new ArestaNotFoundException("Aresta não existe.");
     }
 
     /**
