@@ -1,14 +1,14 @@
 package exception;
 
-public class DuplicateKeyException extends Exception{
+public class UsuarioNotFoundException extends Exception{
     private static final long serialVersionUID = 12342L;
     
-    public DuplicateKeyException(String mensagem){
+    public UsuarioNotFoundException(String mensagem){
         //Acessa o contrutor de Exception (Classe Pai)
         super(mensagem);
     }
     
-    public DuplicateKeyException(String mensagem, Throwable causa){
+    public UsuarioNotFoundException(String mensagem, Throwable causa){
         super(mensagem, causa);
     }
-}   
+}
