@@ -1,8 +1,8 @@
 package model;
 
+import java.util.Objects;
 
 public class Usuario {
-
     private String login;
     private String password;
     private String nome;
@@ -93,6 +93,13 @@ public class Usuario {
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 31 * hash + Objects.hashCode(this.email);
+        return hash;
     }
 
     @Override
