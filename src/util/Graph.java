@@ -49,7 +49,7 @@ public class Graph<T> implements IGraph, Serializable {
     public int numberVertices() {
         return adjacencias.keySet().size();
     }
-
+    
     public void removeVertice(T object) {
         if (!adjacencias.get(object).isEmpty()) {
             for (Aresta<T> aresta : adjacencias.get(object).values()) {
@@ -81,7 +81,16 @@ public class Graph<T> implements IGraph, Serializable {
         }
         throw new ArestaNotFoundException("Aresta não existe.");
     }
-
+    
+    public boolean containsAresta(T origem, T destino){
+        for (Aresta<T> aresta : arestas) {
+            if (aresta.getOrigem().equals(origem) && aresta.getDestino().equals(destino)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     @SuppressWarnings("rawtypes")
     public Iterator arestas() {
         if (!arestas.isEmpty()) {

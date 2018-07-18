@@ -3,17 +3,17 @@ package model;
 //Para manipular a sessao logada, apenas para um usuario.
 public class Sessao {
     private static Sessao instance = null;
-    private Usuario UsuarioOn;
+    private Usuario user;
 
     public Sessao() {
     }
 
-    public Usuario getUsuarioOn() {
-        return UsuarioOn;
+    public Usuario getUser() {
+        return user;
     }
 
-    public void setUsuarioOn(Usuario UsuarioOn) {
-        this.UsuarioOn = UsuarioOn;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
         
     public static Sessao getIntance(){
@@ -25,7 +25,7 @@ public class Sessao {
     
     public void finaliza(){
         if(Sessao.instance != null){
-            this.setUsuarioOn(null);
+            this.setUser(null);
         }
     }
 }
