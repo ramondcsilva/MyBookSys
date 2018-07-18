@@ -29,7 +29,11 @@ public class Graph<T> implements IGraph, Serializable {
         adjacencias = new HashMap<>();
         arestas = new ArrayList<>();
     }
-
+    
+    public Graph(ArrayList a) {
+        this.arestas = a;
+    }
+    
     // Vertices
     public void addVertice(T object) throws DuplicateKeyException {
         if (adjacencias.containsKey(object)) {

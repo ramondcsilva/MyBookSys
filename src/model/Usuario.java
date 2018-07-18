@@ -1,5 +1,6 @@
 package model;
 
+
 public class Usuario {
 
     private String login;
@@ -12,7 +13,11 @@ public class Usuario {
 
     public Usuario() {
     }
-
+    
+    public Usuario(String email) {
+        this.email = email;
+    }
+    
     public Usuario(String login, String password, String nome, String email, String dataNascimento, String endereço, String telefone) {
         this.login = login;
         this.password = password;
@@ -92,6 +97,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "login";
+        return login;
     }
 }

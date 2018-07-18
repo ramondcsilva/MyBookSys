@@ -47,4 +47,9 @@ public class Aresta<T> implements Serializable {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return origem.toString() + destino.toString();
+    }
 }
