@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import javafx.event.ActionEvent;
@@ -74,6 +69,113 @@ public class FormCadastro extends MyForm{
     public void setBtnCancelarAction(EventHandler<ActionEvent> eh){
         btnCancelar.setOnAction(eh);
     }
-        
+    
+    // Getters e Setters ----------------------
+
+    public GridPane getGrid() {
+        return grid;
+    }
+
+    public void setGrid(GridPane grid) {
+        this.grid = grid;
+    }
+
+    public Label getlUserName() {
+        return lUserName;
+    }
+
+    public void setlUserName(Label lUserName) {
+        this.lUserName = lUserName;
+    }
+
+    public Label getlPass() {
+        return lPass;
+    }
+
+    public void setlPass(Label lPass) {
+        this.lPass = lPass;
+    }
+
+    public Label getlConfPass() {
+        return lConfPass;
+    }
+
+    public void setlConfPass(Label lConfPass) {
+        this.lConfPass = lConfPass;
+    }
+
+    public Label getlEmail() {
+        return lEmail;
+    }
+
+    public void setlEmail(Label lEmail) {
+        this.lEmail = lEmail;
+    }
+
+    public TextField getTfUserName() {
+        return tfUserName;
+    }
+
+    public void setTfUserName(TextField tfUserName) {
+        this.tfUserName = tfUserName;
+    }
+
+    public TextField getTfEmail() {
+        return tfEmail;
+    }
+
+    public void setTfEmail(TextField tfEmail) {
+        this.tfEmail = tfEmail;
+    }
+
+    public PasswordField getPfPass() {
+        return pfPass;
+    }
+
+    public void setPfPass(PasswordField pfPass) {
+        this.pfPass = pfPass;
+    }
+
+    public PasswordField getPfConfPass() {
+        return pfConfPass;
+    }
+
+    public void setPfConfPass(PasswordField pfConfPass) {
+        this.pfConfPass = pfConfPass;
+    }
+
+    public Button getBtnConfirmar() {
+        return btnConfirmar;
+    }
+
+    public void setBtnConfirmar(Button btnConfirmar) {
+        this.btnConfirmar = btnConfirmar;
+    }
+
+    public Button getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public void setBtnCancelar(Button btnCancelar) {
+        this.btnCancelar = btnCancelar;
+    }
+
+    public HBox getHbBtnBox() {
+        return hbBtnBox;
+    }
+
+    public void setHbBtnBox(HBox hbBtnBox) {
+        this.hbBtnBox = hbBtnBox;
+    }
+
+    public VBox getVbCenterContainer() {
+        return vbCenterContainer;
+    }
+
+    public void setVbCenterContainer(VBox vbCenterContainer) {
+        this.vbCenterContainer = vbCenterContainer;
+    }
+    
+          
     
 }

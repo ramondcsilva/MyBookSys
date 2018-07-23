@@ -21,21 +21,22 @@ public class Main extends Application {
         final double width = 450;
         final double height = 600;
         SceneForm dash = new FormCadastro(width, height);
-        SceneForm cad = new FormCadastro(width, height);
-        SceneForm login = new FormLogin(width, height);
-        ((FormLogin)login).setBtnLoginAction((ActionEvent eh)-> {
+        FormCadastro cad = new FormCadastro(width, height);
+        FormLogin login = new FormLogin(width, height);
+        login.setBtnLoginAction((ActionEvent eh)-> {
             stage.setScene(dash.getScene());
             stage.show();
         });
-        ((FormLogin)login).setBtnCadastroAction((ActionEvent eh)->{
+        login.setBtnCadastroAction((ActionEvent eh)->{
+            cad.getTfEmail().setText(login.getTfUser().getText());
             stage.setScene(cad.getScene());
             stage.show();
         });
-        ((FormCadastro)cad).setBtnConfirmarAction((ActionEvent eh)->{
+        cad.setBtnConfirmarAction((ActionEvent eh)->{
             stage.setScene(login.getScene());
             stage.show();
         });
-        ((FormCadastro)cad).setBtnCancelarAction((ActionEvent eh)->{
+        cad.setBtnCancelarAction((ActionEvent eh)->{
             stage.setScene(login.getScene());
             stage.show();
         });
