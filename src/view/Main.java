@@ -1,46 +1,87 @@
-/*  ******************************************************************************
- *  Autor: Sergio e Ramon
- *  Componente curricular: Módulo Integrador de Programação
- *  Concluido em: 
- *  Declaro que este código foi elaborado por mim de forma individual e não contém
- *  nenhum trecho de código de outro colega ou de outro autor, tais como provindos
- *  de livros e apostilas, e páginas ou documentos eletrônicos da Internet.
- *  Qualquer trecho de código de outra autoria que não a minha está destacado com
- *  uma citação para o autor e a fonte do código, e estou ciente que estes trechos
- *  não serão considerados para fins de avaliação.
- *  ******************************************************************************/
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package view;
 
+import controller.SistemaController;
+import exception.DuplicateKeyException;
+import exception.DuplicateUsuarioException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author ramon
+ */
 public class Main extends Application {
-    
+
+    SistemaController controller = new SistemaController();
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+    public void start(Stage stage) {
+        stage.setTitle("meinBuch");
+        final double width = 450;
+        final double height = 600;
+        SceneForm dash = new FormCadastro(width, height);
+        FormCadastro cad = new FormCadastro(width, height);
+        FormLogin login = new FormLogin(width, height);
+        
+ //-------------------Configuração de Eventos dos botões dos formularios-----------------------------------------------
+        
+        login.setBtnLoginAction((ActionEvent eh) -> {
+            stage.setScene(dash.getScene());
+            stage.show();
+        });
+        login.setBtnCadastroAction((ActionEvent eh) -> {
+            cad.getTfUserName().setText(login.getTfUser().getText());
+            stage.setScene(cad.getScene());
+            stage.show();
+        });
+        cad.setBtnConfirmarAction((ActionEvent eh) -> {
+            try {
+                controller.registrarUsuario(
+                            cad.getTfUserName().getText(),
+                            cad.getPfConfPass().getText(),
+                            cad.getTfNome().getText(),
+                            cad.getTfEmail().getText(),
+                            cad.getTfDataNasc().getText(),
+                            cad.getTfEndereco().getText(),
+                            cad.getTfTelefone().getText()
+                        );
+                
+            } catch (DuplicateUsuarioException ex) {
+                alert.setContentText("Usuário Duplicado");
+                alert.show();
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+
+            } catch (DuplicateKeyException ex) {
+                alert.setContentText("Chave Duplicada");
+                alert.show();
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
+            stage.setScene(login.getScene());
+            stage.show();
+        });
+        cad.setBtnCancelarAction((ActionEvent eh) -> {
+            stage.setScene(login.getScene());
+            stage.show();
         });
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+ //---------------------------Configuração dos estilos dos formulários -----------------------------------------------------------
         
-        Scene scene = new Scene(root, 300, 250);
+        login.getScene().getStylesheets().add(Main.class.getResource("main/main.css").toExternalForm());
+        dash.getScene().getStylesheets().add(Main.class.getResource("main/main.css").toExternalForm());
+        cad.getScene().getStylesheets().add(Main.class.getResource("main/main.css").toExternalForm());
         
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        stage.setScene(login.getScene());
+        stage.show();
     }
 
     /**
@@ -49,5 +90,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
